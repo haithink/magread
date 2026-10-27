@@ -1,0 +1,19 @@
+pluginManagement {
+    repositories {
+        // 国内网络：google 直连可用；Central/PluginPortal 直连会 stall，用阿里云镜像
+        google()
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        mavenCentral()
+    }
+}
+rootProject.name = "magread"
+include ':app'
