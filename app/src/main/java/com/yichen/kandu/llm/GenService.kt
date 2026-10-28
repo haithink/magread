@@ -16,6 +16,7 @@ import com.yichen.kandu.data.SentenceAnalysis
 import com.yichen.kandu.data.VocabEntry
 import com.yichen.kandu.data.VocabFilter
 import com.yichen.kandu.data.VocabLevels
+import com.yichen.kandu.data.VocabNormalizer
 import kotlinx.serialization.json.JsonArray
 import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.jsonArray
@@ -194,12 +195,15 @@ object GenService {
             onProgress(ci + 1, chunks.size)
         }
 
-        val result = ArticleVocab(
-            level = level,
-            articleIndex = article.index,
-            titleEntries = titleEntries,
-            paragraphs = paragraphsOut.sortedBy { it.index },
-            idioms = idiomsOut.distinctBy { it.word.lowercase() }
+        val result = VocabNormalizer.normalize(
+            ArticleVocab(
+                level = level,
+                articleIndex = article.index,
+                titleEntries = titleEntries,
+                paragraphs = paragraphsOut.sortedBy { it.index },
+                idioms = idiomsOut.distinctBy { it.word.lowercase() }
+            ),
+            article
         )
         BookStore.saveVocab(context, result, meta.id)
         return result

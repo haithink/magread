@@ -67,7 +67,9 @@ object Prompts {
         units: List<Pair<Int, String>>,
         candidates: Map<Int, List<String>>
     ): String = buildString {
-        appendLine("以下是文章《${title.take(80)}》的标题和逐段文本。段落编号如下。")
+        appendLine("以下是文章《${title.take(80)}》的标题和逐段文本。段落编号是全文统一编号。")
+        appendLine("输出 JSON 里 paragraphs 的 index 必须原样使用我给出的段落编号，绝不要自行重新计数。")
+        appendLine("startWords 直接摘取该段开头的连续几个单词。")
         appendLine()
         appendLine("### 标题（段落编号 $titleIndex）")
         appendLine(title)

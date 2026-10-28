@@ -60,6 +60,7 @@ import com.yichen.kandu.data.BookMeta
 import com.yichen.kandu.data.BookStore
 import com.yichen.kandu.data.SentenceAnalysis
 import com.yichen.kandu.data.SettingsStore
+import com.yichen.kandu.data.VocabNormalizer
 import com.yichen.kandu.llm.GenService
 import com.yichen.kandu.llm.LlmClient
 import com.yichen.kandu.ui.sentence.neighbors
@@ -118,9 +119,15 @@ fun ReaderScreen(
         try {
             val c = BookStore.ensureContent(context, meta)
             content = c
-            article = c.articles.firstOrNull { it.index == articleIndex }
-            if (article == null) loadError = "找不到文章 #$articleIndex"
-            vocab = BookStore.loadVocab(context, meta.id, articleIndex, settings.vocabLevel)
+            val art = c.articles.firstOrNull { it.index == articleIndex }
+            article = art
+            if (art == null) {
+                loadError = "找不到文章 #$articleIndex"
+            } else {
+                // normalize 兼顾旧缓存：分块生成的重复编号在读取时自动修复
+                vocab = BookStore.loadVocab(context, meta.id, articleIndex, settings.vocabLevel)
+                    ?.let { VocabNormalizer.normalize(it, art) }
+            }
         } catch (e: Exception) {
             loadError = e.message ?: e.toString()
         }
