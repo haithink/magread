@@ -136,7 +136,7 @@ fun VocabContent(vocab: ArticleVocab, onlyParagraph: Int? = null, modifier: Modi
         }
         if (onlyParagraph == null) SectionHeader("逐段生词")
         sections.forEach { ParagraphVocabSection(it) }
-        if (onlyParagraph != null && sections.firstOrNull()?.entries?.isEmpty() == true) {
+        if (onlyParagraph != null && sections.all { it.entries.isEmpty() }) {
             Text("本段没有收录生词", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.outline)
         }
     }
