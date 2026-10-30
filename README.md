@@ -2,6 +2,15 @@
 
 基于大模型的英文外刊（经济学人 / Wired / 纽约客 / 大西洋月刊等）安卓精读辅助 App。
 
+## 下载 Android 安装包
+
+**[下载刊读 v0.2.2 APK（Debug 测试版，约 23.4 MiB）](https://github.com/haithink/magread/raw/refs/heads/main/downloads/magread-v0.2.2-debug.apk)**
+
+支持 Android 8.0 及以上版本。下载后在手机上打开 APK，按系统提示允许当前来源安装应用。
+首次使用需自行配置 LLM 接口及 API Key。
+
+安装包由现有 Debug 构建产物提供，包信息、SHA-256 和更新方式见 [downloads](downloads/README.md)。
+
 ## 功能
 
 1. **词汇水平** — 首次启动选择（当前内置 CET-4 词库 3739 词 + 音标，离线筛超纲词；CET-6/托福/GRE 预留）
