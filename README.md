@@ -35,3 +35,8 @@
 - PDF：PdfRenderer 封面 + pdfbox-android 文本提取（双栏版式为粗略线性文本，v1 已知限制）
 - 大模型：OkHttp；JSON 输出做围栏剥离 + 容错解析
 - 缓存目录：`filesDir/{books,covers,cache,vocab}`，设置在 `filesDir/settings.json`
+
+## 许可证
+
+本项目原创代码采用 [MIT License](LICENSE)，版权归 haithink 及贡献者所有。
+第三方依赖与词表等资源的许可范围见 [第三方资源说明](THIRD_PARTY_NOTICES.md)。
